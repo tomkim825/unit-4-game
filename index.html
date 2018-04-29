@@ -14,7 +14,7 @@
 
 <body>
     <audio autoplay>
-        <source src="assets/audio/crawl.mp3#t=3.5,33" type="audio/mpeg"></audio>
+        <source id="audio-source" src="assets/audio/crawl.mp3#t=3.5,33" type="audio/mpeg"></audio>
 
     <div class = "introcontainer">    
     <section class="intro">
@@ -51,62 +51,74 @@
     <!-- Jumbotron description of app-->
     <div class="jumbotron" style="margin-bottom:0">
         <div class="container">
+            <div class="row text-center press-enter"> PRESS ENTER TO START NEW GAME (or skip video next time)</div>
             <div class= "row">
+                <!-- user selection area -->
                 <div class="col-md-5" style="height:300px">
                     <div class="userside">P1 HEALTH</div>
                     <div class="user-healthbar"></div>
                     <div class="user-lifeleft"></div>
-                    <div id="infobar">Health remaining:<span id="userhealth"></span><br>Next Attack: <span id="userattack"></span></div>
+                    <div class="infobar">Health remaining: <span id="userhealth"></span><br>Next Attack: <span id="userattack"></span></div>
+                    <div id="usercharacter"></div>
                 </div>
+                <!-- middle button section -->
                 <div class="col-md-2">
-                    <div class=buttons>
-                        <button class="btn btn-danger btn-lg text-center">ATTACK!</button>
-                        <button class="btn btn-default btn-lg text-center">RESTART</button>
+                    <div class="buttons">
+                        <button id="attack" class="btn btn-danger btn-lg text-center">ATTACK!</button>
+                        <button id="restart" class="btn btn-default btn-lg text-center">RESTART</button>
+                    </div>
+                    <div class="location-buttons text-center">
+                        <h5>Change your location. Click after audio ends</h5>
+                        <button id="Endor" class="btn btn-success btn-lg text-center">Endor</button>
+                        <button id="Death-Star" class="btn btn-dark btn-lg text-center">Death Star</button>
+                        <button id="Cantina" class="btn btn-primary btn-lg text-center">Cantina</button>                      
+                        <button id="Kumite" class="btn btn-warning btn-lg text-center">Kumite</button>
                     </div>
                 </div>
+                <!-- computer selection area -->
                 <div class="col-md-5" style="height:300px">
                     <div class="computerside">COMPUTER HEALTH</div>
                     <div class="comp-healthbar"></div>
                     <div class="comp-lifeleft"></div>
-                    <div id="infobar">Health remaining:<span id="comphealth"></span><br>Next Attack: <span id="compattack"></span></div>
+                    <div class="infobar">Health remaining: <span id="comphealth"></span><br>Next Attack: <span id="compattack"></span></div>
+                    <div id="computercharacter"></div>
                 </div>         
             </div>
         </div>
     </div>
+    <!-- bottom div where characters are contained -->
     <div class="container" style="padding:0">
         <div class= "row">
-            <div class="col-md-6 bg-primary message-console" style="border-radius:10px;" >
+            <!-- character selection area -->
+            <div class="col-md-6 bg-dark message-console" style="border-radius:10px;" >
                 <h2 id="message-display">Choose your character:</h2>
                 <div id='initial-characters' style="float:left">
                     <div id="Luke" class="swcharacter" style="float:left">
-                        <div class='text-center'>Luke SkyWalker</div>
-                        <img class="character-picture" src="assets/images/luke.png" alt:'pic of luke' width='100px' height="100px">
+                        <div class='text-center luke-name'>Luke SkyWalker</div>
+                        <img class="character-picture luke-boy" src="assets/images/luke.png" alt:'pic of luke' width='100px' height="100px">
                     </div>
                     <div id="Jawa" class="swcharacter" style="float:left">
                         <div class='text-center'>Jawa</div>
                         <img class="character-picture" src="assets/images/jawa.jpg" alt:'pic of jawa' width='100px' height="100px">
                     </div>
                     <div id="Stormtrooper" class="swcharacter" style="float:left">
-                        <div class='text-center'>Storm Trooper "TK-462"</div>
+                        <div class='text-center'>Storm Trooper "TK-421"</div>
                         <img class="character-picture" src="assets/images/stormtrooper.png" alt:'pic of stormtrooper' width='100px' height="100px">
                     </div>
                     <div id="Boba-Fett" class="swcharacter" style="float:left">
                         <div class='text-center'>Boba Fett</div>
                         <img class="character-picture" src="assets/images/bobafett.png" alt:'pic of bobafett' width='100px' height="100px">
+                    </div>
+                    <div id="Master-Luke" class="swcharacter" style="float:left; display:none">
+                        <div class='text-center'>Master Luke SkyWalker</div>
+                        <img class="character-picture" src="assets/images/luke_master.png" alt:'pic of luke' width='100px' height="100px">
                     </div>    
                 </div>
-                <div id="choose-enemy">
-
-                </div>
             </div>
-            <div class="col-md-6 bg-dark defeated" style="border-radius:10px;" >
+            <!-- empty div that will house the defeated characters -->
+            <div class="col-md-6 bg-danger defeated" style="border-radius:10px;" >
                 <h2>Defeated enemies:</h2>
-                <div id="defeated-enemy">
-                        <div id="Boba-Fett" style="float:left">
-                                <div class='text-center'>Boba Fett</div>
-                                <img class="character-picture" src="assets/images/bobafett.png" alt:'pic of luke' width='100px' height="100px">
-                            </div>  
-                </div>
+                <div id="defeated-enemy"></div>
             </div>    
         </div>
  
