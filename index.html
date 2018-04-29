@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Star Wars RPG</title>
+  <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <!-- Added link to the jQuery Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <!-- <audio autoplay>
+        <source src="assets/audio/crawl.mp3#t=3.5,33" type="audio/mpeg"></audio>
+
+    <div class = "introcontainer">    
+    <section class="intro">
+        <span id="long-ago">A long time ago, in a bootcamp far,<br> far away....</span>
+    </section>
+    <section class="logo">
+        <img class= "logo" src="assets/images/1024px-Star_Wars_Logo.svg.png">
+    </section>
+            <div class="titles">
+                <p style="text-align: center">
+                    HOMEWORK: UNIT 4
+                </p>
+                <br>  
+                <p>
+                    HTML! CSS! Bootstrap! JavaScript! And now 
+                    jQuery! 10 days of instruction have passed  
+                    and we are now ready to deploy some work.
+                </p>
+                <br>
+                <p>
+                    Tasked with the making of a new game, the cohort
+                    must complete Luke's Jedi training to stop  
+                    the Empire. Will you succeed? The fate of  
+                    the galaxy depends on your success...
+                    <br>
+                </p>
+            </div>
+
+    </div> -->
+    
+        <!-- Star Wars header banner -->
+    <h1>Star Wars RPG: Jedi Training School</h1>
+ 
+    <!-- Jumbotron description of app-->
+    <div class="jumbotron" style="margin-bottom:0">
+        <div class="container">
+            <div class= "row">
+                <div class="col-md-5" style="height:300px">
+                    <div class="userside">P1 HEALTH</div>
+                    <div class="user-healthbar"></div>
+                    <div class="user-lifeleft"></div>
+                    <div id="infobar">Health remaining:<span id="userhealth"></span><br>Next Attack: <span id="userattack"></span></div>
+                </div>
+                <div class="col-md-2">
+                    <div class=buttons>
+                        <button class="btn btn-danger btn-lg text-center">ATTACK!</button>
+                        <button class="btn btn-default btn-lg text-center">RESTART</button>
+                    </div>
+                </div>
+                <div class="col-md-5" style="height:300px">
+                    <div class="computerside">COMPUTER HEALTH</div>
+                    <div class="comp-healthbar"></div>
+                    <div class="comp-lifeleft"></div>
+                    <div id="infobar">Health remaining:<span id="comphealth"></span><br>Next Attack: <span id="compattack"></span></div>
+                </div>         
+            </div>
+        </div>
+    </div>
+    <div class="container" style="padding:0">
+        <div class= "row">
+            <div class="col-md-6 bg-primary message-console" style="border-radius:10px;" >
+                <h2 id="message-display">Choose your character:</h2>
+                <div id='initial-characters' style="float:left">
+                    <div id="Luke" class="swcharacter" style="float:left">
+                        <div class='text-center'>Luke SkyWalker</div>
+                        <img class="character-picture" src="assets/images/luke.png" alt:'pic of luke' width='100px' height="100px">
+                    </div>
+                    <div id="Jawa" class="swcharacter" style="float:left">
+                        <div class='text-center'>Jawa</div>
+                        <img class="character-picture" src="assets/images/jawa.jpg" alt:'pic of jawa' width='100px' height="100px">
+                    </div>
+                    <div id="Stormtrooper" class="swcharacter" style="float:left">
+                        <div class='text-center'>Storm Trooper "TK-462"</div>
+                        <img class="character-picture" src="assets/images/stormtrooper.png" alt:'pic of stormtrooper' width='100px' height="100px">
+                    </div>
+                    <div id="Boba-Fett" class="swcharacter" style="float:left">
+                        <div class='text-center'>Boba Fett</div>
+                        <img class="character-picture" src="assets/images/bobafett.png" alt:'pic of bobafett' width='100px' height="100px">
+                    </div>    
+                </div>
+                <div id="choose-enemy">
+
+                </div>
+            </div>
+            <div class="col-md-6 bg-dark defeated" style="border-radius:10px;" >
+                <h2>Defeated enemies:</h2>
+                <div id="defeated-enemy">
+                        <div id="Boba-Fett" style="float:left">
+                                <div class='text-center'>Boba Fett</div>
+                                <img class="character-picture" src="assets/images/bobafett.png" alt:'pic of luke' width='100px' height="100px">
+                            </div>  
+                </div>
+            </div>    
+        </div>
+ 
+        </div>
+    <br>
+   <script src="assets/javascript/game.js"></script>
+</body>
+</html>

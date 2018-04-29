@@ -1,0 +1,209 @@
+body{
+    background: black;
+    color:gold; 
+    clear:both;
+}
+
+.introcontainer{
+    display: block;
+    position: absolute;
+    background: black;
+    z-index: 99;  
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    animation: intro 30s ease-out 0s;
+}
+
+/* intro "long time ago" -- animation css at bottom */
+/* intro changed from 6 to 1 sec  */
+.intro {
+    position: absolute;
+    width: 100%;
+    /* height: 100%; */
+    margin: 0 ;
+    opacity: 0;
+    animation: intro 4.5s ease-out 0.5s;
+  }
+/* styling on long time ago text to position on screen */
+ #long-ago{
+    font-size: 5em;
+    font-weight: 100;
+    color: rgb(75, 213, 238);
+    position: absolute;
+    margin-top:20%;
+    top:65%;
+    left:3%;
+ }
+/* logo animation. times changed from 9 to 2 */
+ .logo {
+    text-align: center;
+    opacity: 0;
+    animation: logo 7s ease-out 4s;
+  } 
+/* intro text animation. times changed from 9 to 2 */
+.titles {
+    height:0;
+    width:0px;
+    opacity:0;
+    margin:-70% auto 0;
+    text-align: justify;
+    position: absolute;
+    width: auto;
+    font-size: 6em;
+    transform-origin: 50% 100%;
+    transform: perspective(240px) rotateX(20deg);
+    animation: titles 41s linear 8s;
+    
+} 
+    
+h1{
+    text-align: center
+
+}
+.jumbotron {
+    height: 300px;
+    background-image: url("../images/deathstarbck.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative; 
+    padding-top:0;
+    width:96%;
+    margin:0 auto;
+}
+.userside{
+    text-align: right;
+    display: block;
+}
+.computerside{
+    text-align: left;
+    display: block;
+}
+.user-healthbar{
+    position: absolute;
+    height:15px;
+    width: 100%;
+    background-color: red;
+    border: 1px solid orange;
+    border-radius: 4px;
+    right:0;
+    top:15px;
+}
+.user-lifeleft{
+    position: absolute;
+    height:15px;
+    width: 65%;
+    background-color: yellow;
+    border-radius: 2px;
+    right:0;
+    top:15px;
+}
+
+.comp-healthbar{
+    position: absolute;
+    height:15px;
+    width: 100%;
+    background-color: red;
+    border-radius: 4px;
+    border: 1px solid orange;
+    left:0;
+    top:15px;
+}
+.comp-lifeleft{
+    position: absolute;
+    height:15px;
+    width: 45%;
+    background-color: yellow;
+    border-radius: 2px;
+    left:0;
+    top:15px;
+}
+#infobar{
+    position: absolute;
+    height: 36px;
+    width: 100%;
+    background:black;
+    border-radius: 2px;
+    left:0;
+    top:30px;
+}
+.buttons{
+    position: absolute;
+    top: 125px;
+}
+.character-picture {
+    background-color: white;
+    border-radius:50%;
+    margin: 0 10px 10px;
+}
+
+#defeated-enemy{
+    filter: saturate(0) opacity(.2) blur(1px);
+}
+
+/* **************************** */
+/* animations and actions below */
+/* **************************** */
+
+/*this is how the intro screen animates in and then is hidden  */
+@keyframes intro {
+    0% {
+      opacity: 0;
+    }  
+    1% { 
+      opacity: 1; 
+    }
+    90% { 
+      opacity: 1; 
+    }
+    100% { 
+      opacity: 0;
+      display: none;
+    }
+  }
+
+@keyframes logo {
+    0% { 
+        transform:scale(2.25); 
+        opacity: 1; 
+    }
+    
+    50% { 
+        opacity: 1; 
+    }
+    100% { 
+        transform:scale(.1); 
+        opacity: 0;
+        display:none; 
+    }
+}
+
+@keyframes titles {
+    0% {
+        width:67%;
+        margin: 0 10%; 
+        height:1000px;
+        display: block;
+        bottom: -200px; 
+        opacity: 1;
+    }
+    2% {
+        bottom: -200px;
+        opacity: 1;
+    }
+    95% {
+        bottom: 2000px;
+        opacity: 1;
+    }
+    100% { 
+        width: 10%;
+        font-size: 1em;
+        margin: 0 25%;
+        height:1000px;
+        bottom: 2000px;
+        opacity: 0;
+        display: none;
+
+    }
+}
