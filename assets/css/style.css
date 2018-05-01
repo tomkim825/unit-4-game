@@ -156,7 +156,7 @@ h1{
 .swcharacter:hover{
     transform: scale(1.05);
     opacity: 1; 
-    filter: contrast(1.2) saturate(2);
+    filter: contrast(1.2) saturate(2) opacity(1);
 }
 
 #Master-Luke{
