@@ -16,7 +16,8 @@
     <audio autoplay>
         <source id="audio-source" src="assets/audio/crawl.mp3#t=3.5,33" type="audio/mpeg"></audio>
 
-    <div class = "introcontainer">    
+    <div class = "introcontainer">
+        Press Enter to skip animation    
     <section class="intro">
         <span id="long-ago">A long time ago, in a bootcamp far,<br> far away....</span>
     </section>
@@ -51,7 +52,7 @@
     <!-- Jumbotron description of app-->
     <div class="jumbotron" style="margin-bottom:0">
         <div class="container">
-            <div class="row text-center press-enter"> PRESS ENTER TO START NEW GAME (or skip video next time)</div>
+            <div class="row text-center press-enter"> PRESS ENTER TO START NEW GAME</div>
             <div class= "row">
                 <!-- user selection area -->
                 <div class="col-md-5" style="height:300px">
@@ -59,6 +60,7 @@
                     <div class="user-healthbar"></div>
                     <div class="user-lifeleft"></div>
                     <div class="infobar">Health remaining: <span id="userhealth"></span><br>Next Attack: <span id="userattack"></span></div>
+                    <div id="userbox"></div>
                     <div id="usercharacter"></div>
                 </div>
                 <!-- middle button section -->
@@ -93,7 +95,8 @@
             <div class="col-md-6 bg-dark message-console" style="border-radius:10px;" >
                 <h2 id="message-display">Choose your character:</h2>
                 <div id='initial-characters' style="float:left">
-                    <div id="Luke" class="swcharacter" style="float:left">
+                    <div id="characterbox">
+                    <div id="Luke" class="swcharacter enemies" style="float:left">
                         <div class='text-center luke-name'>Luke SkyWalker</div>
                         <img class="character-picture luke-boy" src="assets/images/luke.png" alt:'pic of luke' width='100px' height="100px">
                     </div>
@@ -112,12 +115,14 @@
                     <div id="Master-Luke" class="swcharacter" style="float:left; display:none">
                         <div class='text-center'>Master Luke SkyWalker</div>
                         <img class="character-picture" src="assets/images/luke_master.png" alt:'pic of luke' width='100px' height="100px">
+                    </div>
                     </div>    
                 </div>
             </div>
-            <!-- empty div that will house the defeated characters -->
+            <!-- empty div that will house the enemy characters -->
             <div class="col-md-6 bg-danger defeated" style="border-radius:10px;" >
-                <h2>Defeated enemies:</h2>
+                <h2 id="message2-display"></h2>
+                <div id="choose-enemy"></div>
                 <div id="defeated-enemy"></div>
             </div>    
         </div>

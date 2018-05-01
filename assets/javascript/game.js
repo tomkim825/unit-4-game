@@ -26,15 +26,16 @@ var charactersInfo = [
 },
 {
     "id": "Master-Luke",
-    "attack": 1000,
-    "health": 1000
+    "attack": 59,
+    "health": 225
 }
 ];
 
 // Declare global variables
 var userSelected = false;
 var computerSelected = false;
-var userAttackPower ;
+var userAttackPower;
+var initialUserAttackPower;
 var userHealth = 100;
 var initialUserHealth = 100;
 var userHealthPercent = 100*userHealth/initialUserHealth + "%";
@@ -75,8 +76,9 @@ function initializeGame() {
     $('.luke-boy').attr("src","assets/images/luke.png");
     $('.luke-name').text("Luke SkyWalker");
     $('#Master-Luke').css("display","none");
-
+    $('#usercharacter').appendTo('#userbox');
   };
+
 //   resets userside healthbar
   function updateHealthBarUserSide() {
     userHealthPercent = 100*userHealth/initialUserHealth + "%";
@@ -94,6 +96,7 @@ function userDied() {
     $('#userhealth').text("0");
     $('.user-lifeleft').css("width","0");
     $('#message-display').css("color","white").text("You lost. Press restart button to play again?");
+    $('#usercharacter').appendTo('#defeated-enemy');
     gameover = true;
 };
 
@@ -111,9 +114,9 @@ function attack(){
             userHealth -= compAttackPower;
             $('#userhealth').text(userHealth);
             updateHealthBarUserSide();
-            userAttackPower += userAttackPower;
+            userAttackPower += initialUserAttackPower;
             $('#userattack').text(userAttackPower);
-            // if user cannot withstand counter attack, run user died function
+        // if user cannot withstand counter attack, run user died function
         } else if ((compAttackPower > userHealth) || (compAttackPower == userHealth)){
             userDied();
         };
@@ -122,7 +125,7 @@ function attack(){
         $('.comp-lifeleft').css("width","0");
         $('#comphealth').text(0);
         enemyIsDefeated();
-        userAttackPower += userAttackPower;
+        userAttackPower += intialUserAttackPower;
     $('#userattack').text(userAttackPower);
     };
     };    
@@ -135,23 +138,31 @@ function enemyIsDefeated(){
     userHealth = initialUserHealth;
     $('#userhealth').text(userHealth);
     updateHealthBarUserSide();
-    $('#message-display').css("color","red").text("Choose Another Opponent:");
+    $('#message-display').text("");
+    if(!gameover){
+    $('#message2-display').css("color","white").text("");
+    };
     // keep track of score
     score ++;
+ 
     // if all 3 enemies are dead, show personalized message. Also reveal hidden boss if user is not luke
     if ((score == 3)&&(userInfo.id == "Jawa")){
         $('#message-display').css("color","white").text("OO TEE DEE!! JAWA JAWA!! You may now face Master Luke!");
         $('#Master-Luke').css("display","block");
+        $('#message2-display').css("color","white").text("Secret Boss Unlocked!:");
     }else if ((score == 3)&&(userInfo.id == "Stormtrooper")){
         $('#message-display').css("color","white").text("TK421 Why aren't you at your post! Return immediately or... You may now face Master Luke!");
         $('#Master-Luke').css("display","block");
+        $('#message2-display').css("color","white").text("Secret Boss Unlocked!:");
     }else if ((score == 3)&&(userInfo.id == "Boba-Fett")){
         $('#message-display').css("color","white").text("Well done Bounty Hunter! You shall be paid double. Do you wish to capture Master Luke for the Emperor?");
         $('#Master-Luke').css("display","block");
+        $('#message2-display').css("color","white").text("Secret Boss Unlocked!:");
     }else if ((score == 3)&&(userInfo.id == "Luke")){
-        $('#message-display').css("color","white").text("Your training is now complete. Restart to play again. Or go to Cloud City to save your friends from Darth Vader!");
+        $('#message-display').css("color","white").text("Your training is now complete. Go to Cloud City to save your friends from Darth Vader! Or restart to play again (play as another character to unlock secret/hidden boss)");
         $('.luke-boy').attr("src","assets/images/luke_master.png");
         $('.luke-name').text("Master Luke");
+        $('#message2-display').css("color","white").text("");
     } else if (score > 3) {
         $('#message-display').css("color","white").text("Game is really over. Please restart game");
     }    
@@ -166,20 +177,20 @@ $("#attack").on("click", function() {
 // reset button will run initialize function when clicked
   $("#restart").on("click", function() {
       initializeGame();
-  });
+    });
 
 
 // Endor button will change jumbotron background image and audio 
 $("#Endor").on("click", function() {
     $(".jumbotron").css("background-image","url('assets/images/endor.jpg')");
-    audio = new Audio('./assets/audio/kumite.mp3');
+    audio = new Audio('./assets/audio/Endor.mp3');
     audio.play();
 });
 
 // Deathstar button will change jumbotron background image and audio 
 $("#Death-Star").on("click", function() {
     $(".jumbotron").css("background-image","url('assets/images/deathstarbck.jpg')");
-    audio = new Audio('./assets/audio/kumite.mp3');
+    audio = new Audio('./assets/audio/ImperialMarch.mp3');
     audio.play();
 });
 
@@ -213,6 +224,7 @@ $("body").keypress(function (e) {
 
     // Check if user has selected character. if selected, checks if computer/opponent is selected
     if (!userSelected){
+        $('.swcharacter').appendTo('#choose-enemy');
         $(this).appendTo("#usercharacter");
         userSelected = true;
         // runs a loop to search for the corresponding object with info, then assigns values
@@ -221,6 +233,7 @@ $("body").keypress(function (e) {
                 userInfo = charactersInfo[i];   
             };
         userAttackPower = userInfo.attack;
+        initialUserAttackPower = userInfo.attack;
         userHealth = userInfo.health;
         initialUserHealth = userInfo.health;
         $('#userhealth').text(userHealth);
@@ -228,9 +241,14 @@ $("body").keypress(function (e) {
         updateHealthBarUserSide();
         };
         // once user is selected, opponent selection begins
-        $('#message-display').css("color","red").text("Now choose your opponent:");
+        $('#message2-display').text("Now choose your opponent:");
         $('#initial-characters').css("color","red");
     } else if(!computerSelected){
+        $('#message2-display').text("Next enemy in line:");
+        if(score > 1){
+            $('#message2-display').css("color","white").text("Final Round!");
+            };
+        $('#message-display').text("PRESS ATTACK! Enemy will counter attack!");
         $(this).appendTo("#computercharacter");
         computerSelected = true;
         // runs a loop to search for the corresponding object with info, then assigns values
