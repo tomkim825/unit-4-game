@@ -169,8 +169,8 @@ h1{
 #defeated-enemy{
     display:none;
 }
-#choose-enemy{
-    min-height:165px;
+.defeated{
+    min-height:200px;
 }
 #usercharacter, 
 #computercharacter{
