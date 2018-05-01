@@ -138,10 +138,11 @@ function enemyIsDefeated(){
     userHealth = initialUserHealth;
     $('#userhealth').text(userHealth);
     updateHealthBarUserSide();
-    $('#message-display').text("");
-    if(!gameover){
+    $('#message-display').text("You Win!");
     $('#message2-display').css("color","white").text("");
-    };
+    if(!gameover){
+    $('#message2-display').css("color","white").text("Choose Another Opponent");
+    } 
     // keep track of score
     score ++;
  
@@ -151,7 +152,7 @@ function enemyIsDefeated(){
         $('#Master-Luke').css("display","block");
         $('#message2-display').css("color","white").text("Secret Boss Unlocked!:");
     }else if ((score == 3)&&(userInfo.id == "Stormtrooper")){
-        $('#message-display').css("color","white").text("TK421 Why aren't you at your post! Return immediately or... You may now face Master Luke!");
+        $('#message-display').css("color","white").text("TK421, Why aren't you at your post! Return immediately or look under the cargo bay to fight Master Luke!");
         $('#Master-Luke').css("display","block");
         $('#message2-display').css("color","white").text("Secret Boss Unlocked!:");
     }else if ((score == 3)&&(userInfo.id == "Boba-Fett")){
@@ -159,12 +160,13 @@ function enemyIsDefeated(){
         $('#Master-Luke').css("display","block");
         $('#message2-display').css("color","white").text("Secret Boss Unlocked!:");
     }else if ((score == 3)&&(userInfo.id == "Luke")){
-        $('#message-display').css("color","white").text("Your training is now complete. Go to Cloud City to save your friends from Darth Vader! Or restart to play again (play as another character to unlock secret/hidden boss)");
+        $('#message-display').css("color","white").text("Level up! Status: Jedi Master. Your training is now complete. Go to Cloud City to save your friends from Darth Vader! Or restart to play again (play as another character to unlock secret/hidden boss)");
         $('.luke-boy').attr("src","assets/images/luke_master.png");
         $('.luke-name').text("Master Luke");
         $('#message2-display').css("color","white").text("");
     } else if (score > 3) {
         $('#message-display').css("color","white").text("Game is really over. Please restart game");
+        $('#message2-display').css("color","white").text("Hope you enjoyed the game. Don't forget to like and subscribe for more Jedi news!");
     }    
     
 }
@@ -226,6 +228,7 @@ $("body").keypress(function (e) {
     if (!userSelected){
         $('.swcharacter').appendTo('#choose-enemy');
         $(this).appendTo("#usercharacter");
+        $('#message-display').text("");
         userSelected = true;
         // runs a loop to search for the corresponding object with info, then assigns values
         for(i=0; i<charactersInfo.length; i++){
