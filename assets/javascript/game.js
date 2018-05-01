@@ -78,57 +78,6 @@ function initializeGame() {
     $('#Master-Luke').css("display","none");
     $('#usercharacter').appendTo('#userbox');
   };
-  
-// Add an on click listener to all elements that have the class "swcharacter". This is to select characters
-function selectCharacter() {
-    $(".swcharacter").on("click", function() {
-
-// Check if user has selected character. if selected, checks if computer/opponent is selected
-    if (!userSelected){
-    $('.swcharacter').appendTo('#choose-enemy');
-    $(this).appendTo("#usercharacter");
-    $('#message-display').text("");
-    userSelected = true;
-    // runs a loop to search for the corresponding object with info, then assigns values
-    for(i=0; i<charactersInfo.length; i++){
-        if(this.id == charactersInfo[i].id){
-            userInfo = charactersInfo[i];   
-        };
-    userAttackPower = userInfo.attack;
-    initialUserAttackPower = userInfo.attack;
-    userHealth = userInfo.health;
-    initialUserHealth = userInfo.health;
-    $('#userhealth').text(userHealth);
-    $('#userattack').text(userAttackPower);
-    updateHealthBarUserSide();
-    };
-    // once user is selected, opponent selection begins
-    $('#message2-display').text("Now choose your opponent:");
-    $('#initial-characters').css("color","red");
-} else if(!computerSelected){
-    $('#message2-display').text("Next enemy in line:");
-    if(score > 1){
-        $('#message2-display').css("color","white").text("Final Round!");
-        };
-    $('#message-display').text("PRESS ATTACK! Enemy will counter attack!");
-    $(this).appendTo("#computercharacter");
-    computerSelected = true;
-    // runs a loop to search for the corresponding object with info, then assigns values
-    for(i=0; i<charactersInfo.length; i++){
-        if(this.id == charactersInfo[i].id){
-            compInfo = charactersInfo[i];   
-        };
-    compAttackPower = compInfo.attack;
-    compHealth = compInfo.health;
-    initialCompHealth = compInfo.health;
-    $('#comphealth').text(compHealth);
-    $('#compattack').text(compAttackPower);
-    updateHealthBarCompSide();
-    };
-};
-}
-
-});
 
 //   resets userside healthbar
   function updateHealthBarUserSide() {
@@ -272,7 +221,54 @@ $("body").keypress(function (e) {
     }
   });
 
+    // Add an on click listener to all elements that have the class "swcharacter". This is to select characters
+    $(".swcharacter").on("click", function() {
 
+    // Check if user has selected character. if selected, checks if computer/opponent is selected
+    if (!userSelected){
+        $('.swcharacter').appendTo('#choose-enemy');
+        $(this).appendTo("#usercharacter");
+        $('#message-display').text("");
+        userSelected = true;
+        // runs a loop to search for the corresponding object with info, then assigns values
+        for(i=0; i<charactersInfo.length; i++){
+            if(this.id == charactersInfo[i].id){
+                userInfo = charactersInfo[i];   
+            };
+        userAttackPower = userInfo.attack;
+        initialUserAttackPower = userInfo.attack;
+        userHealth = userInfo.health;
+        initialUserHealth = userInfo.health;
+        $('#userhealth').text(userHealth);
+        $('#userattack').text(userAttackPower);
+        updateHealthBarUserSide();
+        };
+        // once user is selected, opponent selection begins
+        $('#message2-display').text("Now choose your opponent:");
+        $('#initial-characters').css("color","red");
+    } else if(!computerSelected){
+        $('#message2-display').text("Next enemy in line:");
+        if(score > 1){
+            $('#message2-display').css("color","white").text("Final Round!");
+            };
+        $('#message-display').text("PRESS ATTACK! Enemy will counter attack!");
+        $(this).appendTo("#computercharacter");
+        computerSelected = true;
+        // runs a loop to search for the corresponding object with info, then assigns values
+        for(i=0; i<charactersInfo.length; i++){
+            if(this.id == charactersInfo[i].id){
+                compInfo = charactersInfo[i];   
+            };
+        compAttackPower = compInfo.attack;
+        compHealth = compInfo.health;
+        initialCompHealth = compInfo.health;
+        $('#comphealth').text(compHealth);
+        $('#compattack').text(compAttackPower);
+        updateHealthBarCompSide();
+        };
+    };
+
+
+    });
 initializeGame();
-selectCharacter();
 });
